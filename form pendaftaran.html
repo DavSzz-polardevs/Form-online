@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Pendaftaran</title>
+    <style>
+        body {
+            background-color: #f0fff0;
+            font-family: sans-serif;
+        }
+        .kotak-utama {
+            background-color: white;
+            border: 4px solid #90EE90;
+            padding: 20px;
+            width: 350px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        #box-hasil {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px dashed #90EE90;
+            color: #333;
+        }
+        button {
+            cursor: pointer;
+            padding: 5px 15px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h2>Form Pendaftaran</h2>
+    
+ 
+        <div class="nama">
+            Nama: <br>
+            <input type="text" id="nama" style="width: 95%;">
+        </div>
+
+        <div class="kelas">
+            Kelas: <br>
+            <input type="text" id="kelas" style="width: 95%;">
+        </div>
+
+        <div class="umur">
+            Umur: <br>
+            <input type="radio" name="u" value="10-12"> 10-12 tahun <br>
+            <input type="radio" name="u" value="13-15"> 13-15 tahun <br>
+            <input type="radio" name="u" value="16-17"> 16-17 tahun
+        </div>
+
+        <div class="kelamin">
+            Jenis Kelamin: <br>
+            <input type="radio" name="jk" value="Laki-laki"> Laki-laki <br>
+            <input type="radio" name="jk" value="Perempuan"> Perempuan
+        </div>
+
+        <div class="kelas">
+            Tingkatan: <br>
+            <input type="radio" name="tk" value="SD"> SD <br>
+            <input type="radio" name="tk" value="SMP"> SMP <br>
+            <input type="radio" name="tk" value="SMA"> SMA
+        </div>
+
+        <div style="text-align: center;">
+            <button type="button" onclick="proses()">OK</button>
+            <button type="reset" onclick="bersihkan()">Clear</button>
+        </div>
+    </form>
+
+    <div id="box-hasil">
+        <div id="tampil_nama"></div>
+        <div id="tampil_kelas"></div>
+        <div id="tampil_umur"></div>
+        <div id="tampil_jk"></div>
+        <div id="tampil_tk"></div>
+    </div>
+
+
+<script>
+    function proses() {
+        var v_nama = document.getElementById("nama").value;
+        var v_kelas = document.getElementById("kelas").value;
+        
+        var ck_umur = document.getElementsByName("u");
+        var hasil_umur = "";
+        for (var i = 0; i < ck_umur.length; i++) {
+            if (ck_umur[i].checked == true) {
+                hasil_umur = hasil_umur + ck_umur[i].value + " ";
+            }
+        }
+
+        var rd_jk = document.getElementsByName("jk");
+        var hasil_jk = "";
+        for (var i = 0; i < rd_jk.length; i++) {
+            if (rd_jk[i].checked == true) {
+                hasil_jk = rd_jk[i].value;
+            }
+        }
+
+        var rd_tk = document.getElementsByName("tk");
+        var hasil_tk = "";
+        for (var i = 0; i < rd_tk.length; i++) {
+            if (rd_tk[i].checked == true) {
+                hasil_tk = rd_tk[i].value;
+            }
+        }
+
+        document.getElementById("tampil_nama").innerText = "Nama: " + v_nama;
+        document.getElementById("tampil_kelas").innerText = "Kelas: " + v_kelas;
+        document.getElementById("tampil_umur").innerText = "umur: " + hasil_umur;
+        document.getElementById("tampil_jk").innerText = "Jenis kelamin: " + hasil_jk;
+        document.getElementById("tampil_tk").innerText = "tingkatan: " + hasil_tk;
+        
+        document.getElementById("box-hasil").style.display = "block";
+    }
+
+    function bersihkan() {
+        document.getElementById("box-hasil").style.display = "none";
+        document.getElementById("formDaftar").reset();
+    }
+</script>
+
+</body>
+</html>
